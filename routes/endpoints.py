@@ -1,7 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, status
 from models import Vaga
 from fastapi.responses import JSONResponse
-from fastapi import status
 import hashlib
 import zipfile
 import os
@@ -39,8 +38,19 @@ def endpoint_atualizar_vaga(id_vaga: int, vaga_atualizada: Vaga):
     if atualizar_vaga(id_vaga, vaga_atualizada):
         return {"msg": f"Vaga com ID {id_vaga} atualizada com sucesso."}
     
+# Função para contar as vagas
+@app.get("/vagas/count")
+def endtpoint_contar_vagas():
 
-# Função hash
+    if not os.path.exists(CSV_FILE):
+            raise FileNotFoundError("Arquivo CSV não encontrado.")
+
+    with open(CSV_FILE, mode="r") as file:
+        count = len(list(csv.DictReader(file)))
+    return {"quantidade": count}
+    
+
+# Endpoint função hash
 @router.get("/vagas/hash")
 def endpoint_calcular_hash():
 
@@ -54,7 +64,7 @@ def endpoint_calcular_hash():
 
     return {"sha256": sha256.hexdigest()}
 
-# Função compactação zip
+# Endpoint compactação zip
 @router.get("/zip/", status_code=status.HTTP_200_OK)
 def endpoint_gerar_zip():
 
@@ -67,5 +77,5 @@ def endpoint_gerar_zip():
             file.write(CSV_FILE, os.path.basename(CSV_FILE))
 
     return JSONResponse(
-        content={"message": "Arquivo CSV compactado com sucesso."}
+        content={"msg": "Arquivo CSV compactado com sucesso."}
         )

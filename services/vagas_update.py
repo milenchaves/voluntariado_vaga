@@ -7,7 +7,6 @@ from models import Vaga
 CSV_FILE = "csv/vagas.csv"
 
 
-
 def atualizar_vaga(id_vaga: int, vaga_atualizada: Vaga) -> bool:
     if not os.path.exists(CSV_FILE):
         raise HTTPException(status_code=404, detail="Arquivo de vagas não encontrado.")
