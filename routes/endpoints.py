@@ -1,13 +1,14 @@
 from fastapi import APIRouter, status
 from models import Vaga
 from fastapi.responses import JSONResponse
-import hashlib
-import zipfile
-import os
 from services.vagas_create import criar_vaga
 from services.vagas_delete import deletar_vaga_por_id
 from services.vagas_get import listar_todas_vagas
 from services.vagas_update import atualizar_vaga
+import hashlib
+import zipfile
+import os
+import csv
 
 router = APIRouter()
 
@@ -27,19 +28,19 @@ def endpoint_deletar_vaga(id_vaga: int):
     if deletar_vaga_por_id(id_vaga):
         return {"msg": f"Vaga com ID {id_vaga} deletada com sucesso."}
 
-
+# Endpoint para listar todas as vagas
 @router.get("/vagas/")
 def endpoint_listar_vagas():
     return listar_todas_vagas()
 
-
+# Endpoint para atualizar vaga pelo id
 @router.put("/vagas/{id_vaga}")
 def endpoint_atualizar_vaga(id_vaga: int, vaga_atualizada: Vaga):
     if atualizar_vaga(id_vaga, vaga_atualizada):
         return {"msg": f"Vaga com ID {id_vaga} atualizada com sucesso."}
     
-# Função para contar as vagas
-@app.get("/vagas/count")
+# Função para contar o total de vagas presentes no CSV
+@router.get("/vagas/count")
 def endtpoint_contar_vagas():
 
     if not os.path.exists(CSV_FILE):
