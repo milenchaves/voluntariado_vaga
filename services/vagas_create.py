@@ -6,7 +6,7 @@ from models import Vaga
 CSV_FILE = "csv/vagas.csv"
 
 
-# Função para inicializar o arquivo CSV
+
 def inicializar_csv():
     if not os.path.exists(CSV_FILE):
         os.makedirs(os.path.dirname(CSV_FILE), exist_ok=True)
@@ -27,21 +27,21 @@ def inicializar_csv():
 inicializar_csv()
 
 
-# Função para obter o próximo ID disponível
+
 def obter_proximo_id() -> int:
     if not os.path.exists(CSV_FILE):
         return 1
 
     with open(CSV_FILE, "r") as file:
         reader = csv.reader(file)
-        next(reader)  # Pular o cabeçalho
-        ids = [int(row[0]) for row in reader if row]  # Coleta os IDs existentes
-        return max(ids, default=0) + 1  # Retorna o maior ID + 1 ou 1 se estiver vazio
+        next(reader)  
+        ids = [int(row[0]) for row in reader if row]  
+        return max(ids, default=0) + 1 
 
 
-# Função para criar uma nova vaga
+
 def criar_vaga(vaga: Vaga):
-    # Gerar automaticamente o próximo ID
+
     vaga.id_vaga = obter_proximo_id()
 
     vaga_json = vaga.json()
