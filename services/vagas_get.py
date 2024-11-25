@@ -2,11 +2,11 @@ import csv
 import os
 from models import Vaga
 
-# Configuração do arquivo CSV
+
 CSV_FILE = "csv/vagas.csv"
 
 
-# Função para listar todas as vagas
+
 def listar_todas_vagas():
     if not os.path.exists(CSV_FILE):
         print("Nenhuma vaga encontrada. O arquivo ainda não foi criado.")
@@ -16,7 +16,7 @@ def listar_todas_vagas():
 
     with open(CSV_FILE, "r") as file:
         reader = csv.reader(file)
-        header = next(reader, None)  # Pular o cabeçalho
+        header = next(reader, None)  
         if header is None:
             print("O arquivo está vazio ou sem cabeçalho.")
             return []

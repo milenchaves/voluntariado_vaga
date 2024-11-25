@@ -1,0 +1,14 @@
+WEYDNA:
+    Definir e moldar classe Vaga
+    Endpoint Contador de Entidades no CSV
+    Endpoint para compactar o arquivo CSV em zip
+    Endpoint para gerar o hash SHA256 do arquivo CSV
+    Inserir 5 entidades na aplicação
+    Organizar main.py
+
+MILENA:
+    Definir e moldar classe Vaga
+    Endpoint do CRUD : create, update, delete e get
+    Services do CRUD : vagas_create, vagas_delete, vagas_get, vagas_update
+    Inserir 5 entidades na aplicação
+    Organizar main.py

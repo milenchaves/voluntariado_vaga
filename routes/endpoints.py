@@ -66,7 +66,7 @@ def endpoint_calcular_hash():
     return {"sha256": sha256.hexdigest()}
 
 # Endpoint compactação zip
-@router.get("/zip/", status_code=status.HTTP_200_OK)
+@router.get("/vagas/zip", status_code=status.HTTP_200_OK)
 def endpoint_gerar_zip():
 
     if not os.path.exists(CSV_FILE):
