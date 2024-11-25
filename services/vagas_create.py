@@ -6,7 +6,6 @@ from models import Vaga
 CSV_FILE = "csv/vagas.csv"
 
 
-
 def inicializar_csv():
     if not os.path.exists(CSV_FILE):
         os.makedirs(os.path.dirname(CSV_FILE), exist_ok=True)
@@ -25,7 +24,6 @@ def inicializar_csv():
 
 
 inicializar_csv()
-
 
 
 def obter_proximo_id() -> int:

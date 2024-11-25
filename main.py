@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from routes.endpoints import router as rota_vagas
 
-# Inicializando FastAPI
+
 app = FastAPI()
 
 @app.get("/")
