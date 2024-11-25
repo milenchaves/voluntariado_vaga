@@ -16,30 +16,29 @@ router = APIRouter()
 CSV_FILE = "csv/vagas.csv"
 
 
-# Endpoint para criar uma vaga
+
 @router.post("/vagas/", status_code=201)
 def endpoint_criar_vaga(vaga: Vaga):
     return criar_vaga(vaga)
 
 
-# Endpoint para deletar uma vaga
 @router.delete("/vagas/{id_vaga}")
 def endpoint_deletar_vaga(id_vaga: int):
     if deletar_vaga_por_id(id_vaga):
         return {"msg": f"Vaga com ID {id_vaga} deletada com sucesso."}
 
-# Endpoint para listar todas as vagas
+
 @router.get("/vagas/")
 def endpoint_listar_vagas():
     return listar_todas_vagas()
 
-# Endpoint para atualizar vaga pelo id
+
 @router.put("/vagas/{id_vaga}")
 def endpoint_atualizar_vaga(id_vaga: int, vaga_atualizada: Vaga):
     if atualizar_vaga(id_vaga, vaga_atualizada):
         return {"msg": f"Vaga com ID {id_vaga} atualizada com sucesso."}
     
-# Função para contar o total de vagas presentes no CSV
+
 @router.get("/vagas/count")
 def endtpoint_contar_vagas():
 
@@ -51,7 +50,7 @@ def endtpoint_contar_vagas():
     return {"quantidade": count}
     
 
-# Endpoint função hash
+
 @router.get("/vagas/hash")
 def endpoint_calcular_hash():
 
@@ -65,7 +64,7 @@ def endpoint_calcular_hash():
 
     return {"sha256": sha256.hexdigest()}
 
-# Endpoint compactação zip
+
 @router.get("/vagas/zip", status_code=status.HTTP_200_OK)
 def endpoint_gerar_zip():
 
